@@ -90,12 +90,12 @@ main {
     padding: 0 var(--spacing);
     max-width: 1400px;
     margin: 0 auto;
-    padding-top: calc(8rem + 3rem);
+    padding-top: 8rem;
     transition: padding-top 0.3s ease;
 }
 
 .announcement-banner.visible ~ main {
-    padding-top: calc(8rem + 3rem);
+    padding-top: 11rem;
 }
 
 main:not(.announcement-banner.visible ~ main) {
@@ -413,6 +413,7 @@ footer {
     align-items: center;
     gap: 1rem;
     height: 3rem;
+    box-sizing: border-box;
 }
 
 .announcement-banner.visible {
@@ -422,12 +423,18 @@ footer {
 .announcement-banner .content {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
     justify-content: center;
     font-weight: 500;
+    position: relative;
+    padding: 0 3rem;
+}
+
+.announcement-banner span {
+    white-space: nowrap;
 }
 
 .announcement-banner a {
@@ -439,6 +446,7 @@ footer {
     font-weight: 600;
     transition: all 0.2s ease;
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .announcement-banner a:hover {
@@ -457,10 +465,98 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .announcement-banner .close-button:hover {
     opacity: 1;
+}
+
+/* Adjust nav and main content */
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.announcement-banner.visible ~ nav {
+    transform: translateY(3rem);
+}
+
+main {
+    padding-top: 8rem;
+    transition: padding-top 0.3s ease;
+}
+
+.announcement-banner.visible ~ main {
+    padding-top: 11rem;
+}
+
+@media (max-width: 768px) {
+    .announcement-banner .content {
+        flex-wrap: wrap;
+    }
+    
+    .announcement-banner span,
+    .announcement-banner a {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .projects {
+        padding: 8rem 4rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .projects {
+        padding: 8rem 6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        gap: 1.5rem;
+    }
+    
+    .project {
+        padding: 2rem 0;
+    }
+
+    #about .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-image {
+        order: -1;
+        margin: -2rem 0;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .contact-text {
+        text-align: center;
+    }
+
+    .contact-image {
+        order: -1;
+    }
+
+    .mentorship-list li {
+        justify-content: center;
+    }
 }
 
 /* Back link styling */
@@ -518,55 +614,4 @@ footer {
     height: 1.5rem;
     stroke: currentColor;
     stroke-width: 2;
-}
-
-@media (min-width: 768px) {
-    .projects {
-        padding: 8rem 4rem;
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .projects {
-        padding: 8rem 6rem;
-    }
-}
-
-@media (max-width: 768px) {
-    nav ul {
-        gap: 1.5rem;
-    }
-    
-    .project {
-        padding: 2rem 0;
-    }
-
-    #about .about-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .about-image {
-        order: -1;
-        margin: -2rem 0;
-    }
-
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 2rem;
-    }
-
-    .contact-text {
-        text-align: center;
-    }
-
-    .contact-image {
-        order: -1;
-    }
-
-    .mentorship-list li {
-        justify-content: center;
-    }
 }

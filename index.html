@@ -146,49 +146,46 @@
         </svg>
     </a>
 
-    <script>
-        // Back to top button functionality
-        const backToTop = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
-
-    <script>
-        // Banner functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const banner = document.querySelector('.announcement-banner');
-            const closeButton = banner.querySelector('.close-button');
-            
-            // Show banner after a short delay
-            setTimeout(() => {
-                banner.classList.add('visible');
-            }, 1000);
-
-            // Close banner when clicking the close button
-            closeButton.addEventListener('click', () => {
-                banner.classList.remove('visible');
-            });
-        });
-    </script>
-
     <footer>
         <p>&copy; 2024</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Back to top button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Banner functionality
+            const banner = document.querySelector('.announcement-banner');
+            const closeButton = banner.querySelector('.close-button');
+            
+            // Show banner immediately
+            banner.classList.add('visible');
+
+            // Close banner when clicking the close button
+            closeButton.addEventListener('click', () => {
+                banner.classList.remove('visible');
+                document.querySelector('nav').style.transform = 'translateY(0)';
+                document.querySelector('main').style.paddingTop = '8rem';
+            });
+
+            // Back to top functionality
+            const backToTop = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
