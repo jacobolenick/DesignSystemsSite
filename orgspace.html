@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orgspace Design System - Jacob Olenick</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .project-header {
+            padding-top: 15vh;
+            margin-bottom: 4rem;
+        }
+        
+        .project-content {
+            max-width: 800px;
+        }
+        
+        .project-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .project-image {
+            margin: 4rem 0;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        
+        .project-content ul {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .project-content li {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        main {
+            padding-top: 8rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-top: 8rem;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: var(--accent);
+        }
+        
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent);
+            padding: 1rem;
+            border-radius: 50%;
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            display: block;
+        }
+        
+        .back-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="/" class="logo">JO</a>
+            <ul>
+                <li><a href="../index.html#work">Work</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://www.threads.net/@yourusername" target="_blank">Threads</a>
+                <a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky</a>
+                <a href="https://www.linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <a href="../index.html#work" class="back-link">← Back to projects</a>
+        
+        <div class="project-header">
+            <span class="project-number">03</span>
+            <h1>Orgspace</h1>
+        </div>
+
+        <div class="project-content">
+            <p>Built a comprehensive design system from scratch in 3 months, leveraging modern tools like Figma, Tailwind, and Storybook to create a scalable and efficient development workflow.</p>
+            
+            <h2>The Challenge</h2>
+            <p>Orgspace needed a modern design system that could scale with their rapid growth while maintaining consistency across their product suite. The challenge was to create this system within a tight three-month timeline while ensuring it would be easy for both designers and developers to adopt.</p>
+            
+            <img src="../assets/org.jpg" alt="Orgspace Design System" class="project-image">
+            
+            <h2>The Approach</h2>
+            <p>We implemented a modern tech stack and methodology:</p>
+            <ul>
+                <li>Figma for design and component creation</li>
+                <li>Tailwind CSS for utility-first styling</li>
+                <li>Storybook for component documentation and testing</li>
+                <li>Git-based workflow for version control</li>
+            </ul>
+            
+            <h2>Key Features</h2>
+            <p>The design system includes:</p>
+            <ul>
+                <li>Responsive component library</li>
+                <li>Dark/light theme support</li>
+                <li>Accessibility-first components</li>
+                <li>Interactive documentation</li>
+                <li>Auto-generated style guide</li>
+            </ul>
+            
+            <h2>Impact</h2>
+            <p>The implementation resulted in:</p>
+            <ul>
+                <li>50% faster component development time</li>
+                <li>Consistent UI across all products</li>
+                <li>Improved designer-developer collaboration</li>
+                <li>Reduced design debt and maintenance costs</li>
+            </ul>
+            
+            <h2>Technologies Used</h2>
+            <ul>
+                <li>Figma</li>
+                <li>Tailwind CSS</li>
+                <li>Storybook</li>
+                <li>React</li>
+                <li>TypeScript</li>
+            </ul>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </a>
+
+    <script src="../script.js"></script>
+    <script>
+        // Back to top button functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

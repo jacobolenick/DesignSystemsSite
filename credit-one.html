@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit One Bank Design System - Jacob Olenick</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .project-header {
+            padding-top: 15vh;
+            margin-bottom: 4rem;
+        }
+        
+        .project-content {
+            max-width: 800px;
+        }
+        
+        .project-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .project-image {
+            margin: 4rem 0;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        
+        .project-content ul {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .project-content li {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        main {
+            padding-top: 8rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="/" class="logo">JO</a>
+            <ul>
+                <li><a href="../index.html#work">Work</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://www.threads.net/@yourusername" target="_blank">Threads</a>
+                <a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky</a>
+                <a href="https://www.linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <a href="../index.html#work" class="back-link">← Back to projects</a>
+        
+        <div class="project-header">
+            <span class="project-number">01</span>
+            <h1>Credit One Bank</h1>
+        </div>
+
+        <div class="project-content">
+            <p>I worked on building a 0-1 design system for C1B's internal tools and it saved the company hundreds of thousands of dollars and increased work efficiency by 40%.</p>
+            
+            <h2>The Challenge</h2>
+            <p>Credit One Bank needed a comprehensive design system to unify their internal tools and streamline the development process across multiple teams.</p>
+            
+            <img src="../assets/c1b.jpg" alt="Credit One Bank Design System" class="project-image">
+            
+            <h2>The Solution</h2>
+            <p>We developed a modular design system that included:</p>
+            <ul>
+                <li>Comprehensive component library</li>
+                <li>Design tokens for consistent styling</li>
+                <li>Documentation for designers and developers</li>
+                <li>Automated workflow processes</li>
+            </ul>
+            
+            <h2>Impact</h2>
+            <p>The implementation of the design system resulted in:</p>
+            <ul>
+                <li>40% increase in development efficiency</li>
+                <li>Significant cost savings in development time</li>
+                <li>Improved consistency across all internal tools</li>
+                <li>Faster onboarding for new team members</li>
+            </ul>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </a>
+
+    <script src="../script.js"></script>
+    <script>
+        // Back to top button functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

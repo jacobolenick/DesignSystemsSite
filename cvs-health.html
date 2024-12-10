@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVS Health Design System - Jacob Olenick</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .project-header {
+            padding-top: 15vh;
+            margin-bottom: 4rem;
+        }
+        
+        .project-content {
+            max-width: 800px;
+        }
+        
+        .project-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .project-image {
+            margin: 4rem 0;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        
+        .project-content ul {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .project-content li {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        main {
+            padding-top: 8rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="/" class="logo">JO</a>
+            <ul>
+                <li><a href="../index.html#work">Work</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://www.threads.net/@yourusername" target="_blank">Threads</a>
+                <a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky</a>
+                <a href="https://www.linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <a href="../index.html#work" class="back-link">← Back to projects</a>
+        
+        <div class="project-header">
+            <span class="project-number">02</span>
+            <h1>CVS Health</h1>
+        </div>
+
+        <div class="project-content">
+            <p>I'm the lead design systems designer for our pattern library and I've helped increase design and development for our product launches.</p>
+            
+            <h2>The Role</h2>
+            <p>As the Lead Design Systems Designer at CVS Health, I'm responsible for maintaining and evolving our comprehensive pattern library that serves multiple product teams.</p>
+            
+            <img src="../assets/cvs.png" alt="CVS Health Pattern Library" class="project-image">
+            
+            <h2>Key Contributions</h2>
+            <ul>
+                <li>Led the development of a scalable pattern library</li>
+                <li>Implemented design tokens across the organization</li>
+                <li>Created comprehensive documentation</li>
+                <li>Established design system governance</li>
+            </ul>
+            
+            <h2>Impact</h2>
+            <p>Through systematic improvements and standardization, we've achieved:</p>
+            <ul>
+                <li>Faster product launches</li>
+                <li>Improved consistency across products</li>
+                <li>Better collaboration between design and development</li>
+                <li>Streamlined design review process</li>
+            </ul>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </a>
+
+    <script>
+        // Back to top button functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <script src="../script.js"></script>
+</body>
+</html>

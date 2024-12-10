@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crtside Design System - Jacob Olenick</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .project-header {
+            padding-top: 15vh;
+            margin-bottom: 4rem;
+        }
+        
+        .project-content {
+            max-width: 800px;
+        }
+        
+        .project-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .project-image {
+            margin: 4rem 0;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        
+        .project-content ul {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .project-content li {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        main {
+            padding-top: 8rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="/" class="logo">JO</a>
+            <ul>
+                <li><a href="../index.html#work">Work</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://www.threads.net/@yourusername" target="_blank">Threads</a>
+                <a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky</a>
+                <a href="https://www.linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <a href="../index.html#work" class="back-link">← Back to projects</a>
+        
+        <div class="project-header">
+            <span class="project-number">04</span>
+            <h1>Crtside</h1>
+        </div>
+
+        <div class="project-content">
+            <p>A modern fintech platform requiring a scalable and accessible design system.</p>
+            
+            <h2>The Challenge</h2>
+            <p>Crtside needed a design system that could support rapid growth while maintaining consistency across their fintech products and ensuring accessibility for all users.</p>
+            
+            <img src="../assets/crt.jpg" alt="Crtside Design System" class="project-image">
+            
+            <h2>The Solution</h2>
+            <p>We developed a comprehensive design system that included:</p>
+            <ul>
+                <li>Accessible component library with WCAG 2.1 AA compliance</li>
+                <li>Scalable design tokens for seamless theme customization</li>
+                <li>Interactive documentation with live code examples</li>
+                <li>Mobile-first responsive patterns</li>
+                <li>Performance-optimized components</li>
+            </ul>
+            
+            <h2>The Impact</h2>
+            <ul>
+                <li>Reduced development time by 50%</li>
+                <li>Improved accessibility scores across all products</li>
+                <li>Streamlined design-to-development handoff</li>
+                <li>Enhanced user experience consistency</li>
+            </ul>
+            
+            <h2>Key Features</h2>
+            <ul>
+                <li>Dark/light mode support</li>
+                <li>Real-time theme customization</li>
+                <li>Automated accessibility testing</li>
+                <li>Integration with popular development frameworks</li>
+            </ul>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </a>
+
+    <script>
+        // Back to top button functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2024</p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
