@@ -534,8 +534,12 @@ footer {
     color: var(--accent);
 }
 
+.contact-image {
+    position: relative;
+}
+
 .contact-image img {
-    width: 120%;
+    width: 100%;
     height: auto;
     border-radius: 12px;
     margin: 0 auto;
@@ -560,6 +564,48 @@ footer {
 .mentorship-list svg {
     flex-shrink: 0;
     color: var(--accent);
+}
+
+/* About and Contact section images */
+.about-image,
+.contact-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image img,
+.contact-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .about-content,
+    .contact-content {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .about-image,
+    .contact-image {
+        padding: 0 var(--spacing);
+        width: 100%;
+    }
+
+    .about-image img,
+    .contact-image img {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .about-text,
+    .contact-text {
+        padding: 0 var(--spacing);
+    }
 }
 
 /* Announcement Banner */
