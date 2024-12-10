@@ -21,11 +21,10 @@
     </div>
 
     <nav>
+        <div class="menu-overlay"></div>
         <div class="nav-content">
             <button class="menu-button" aria-label="Toggle menu">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"/>
-                </svg>
+                <span class="hamburger"></span>
             </button>
             <a href="/" class="logo">JO</a>
             <ul>
@@ -191,18 +190,32 @@
                 });
             });
 
-            // Mobile menu functionality
-            document.querySelector('.menu-button').addEventListener('click', function() {
-                document.querySelector('nav').classList.toggle('menu-open');
-                document.body.style.overflow = document.querySelector('nav').classList.contains('menu-open') ? 'hidden' : '';
-            });
+            // Enhanced mobile menu functionality
+            const nav = document.querySelector('nav');
+            const menuButton = document.querySelector('.menu-button');
+            const menuOverlay = document.querySelector('.menu-overlay');
+
+            function toggleMenu() {
+                nav.classList.toggle('menu-open');
+                document.body.style.overflow = nav.classList.contains('menu-open') ? 'hidden' : '';
+            }
+
+            menuButton.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', toggleMenu);
 
             // Close menu when clicking a link
             document.querySelectorAll('nav a').forEach(link => {
                 link.addEventListener('click', () => {
-                    document.querySelector('nav').classList.remove('menu-open');
+                    nav.classList.remove('menu-open');
                     document.body.style.overflow = '';
                 });
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
+                    toggleMenu();
+                }
             });
         });
     </script>
