@@ -45,8 +45,8 @@ nav {
     max-width: var(--max-width);
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 3rem;
 }
 
 .logo {
@@ -55,7 +55,6 @@ nav {
     color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -0.03em;
-    order: 1;
 }
 
 nav ul {
@@ -64,7 +63,23 @@ nav ul {
     gap: 3rem;
     margin: 0;
     padding: 0;
-    order: 2;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+    margin-left: auto;
+}
+
+.menu-button {
+    display: none;
 }
 
 nav a {
@@ -82,7 +97,6 @@ nav a:hover {
     display: flex;
     gap: 1.5rem;
     align-items: center;
-    order: 3;
 }
 
 .social-links a {
@@ -94,28 +108,6 @@ nav a:hover {
 
 .social-links a:hover {
     color: var(--text-primary);
-}
-
-.theme-toggle {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.3s ease;
-    margin-left: 1.5rem;
-}
-
-.theme-toggle:hover {
-    color: var(--text-primary);
-}
-
-.theme-toggle svg {
-    width: 20px;
-    height: 20px;
 }
 
 /* Hamburger Menu Styles */
@@ -184,115 +176,80 @@ nav.menu-open .menu-button .hamburger::after {
         background: var(--bg-primary);
     }
 
+    .nav-content {
+        justify-content: flex-start;
+    }
+
+    .logo {
+        margin-right: auto;
+    }
+
     .menu-button {
         display: block;
         margin-left: 1rem;
         order: 3;
     }
 
-    nav ul {
+    nav ul, .social-links {
         display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: var(--bg-primary);
-        flex-direction: column;
-        align-items: center;
-        padding: 10rem 2rem 2rem;
-        gap: 3rem;
-        height: 100vh;
-        z-index: 2000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
     }
 
-    nav ul li {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        transition-delay: calc(var(--item-index) * 0.1s);
+    .theme-toggle {
+        order: 2;
+        margin: 0;
+        margin-left: 1rem;
     }
 
-    nav.menu-open ul li {
-        opacity: 1;
-        transform: translateY(0);
+    .menu-button {
+        margin-right: calc(var(--spacing) * -1);
+        padding-right: var(--spacing);
     }
 
     nav.menu-open ul {
         display: flex;
-        transform: translateX(0);
-    }
-
-    nav ul li a {
-        font-size: 1.5rem;
-        font-weight: 500;
-        padding: 1rem;
-        display: block;
-        text-align: center;
-    }
-
-    .social-links {
-        display: none;
-        visibility: hidden;
-        position: fixed;
-        bottom: 4rem;
-        left: 0;
-        right: 0;
-        justify-content: center;
-        background: var(--bg-primary);
-        padding: 2rem;
-        gap: 3rem;
-        z-index: 2000;
-        opacity: 0;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    nav.menu-open .social-links {
-        display: flex;
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .theme-toggle {
-        position: fixed;
-        bottom: 2rem;
-        left: 2rem;
-        z-index: 2001;
-        background: var(--accent);
-        border-radius: 50%;
-        padding: 0.75rem;
-        margin: 0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Menu overlay */
-    .menu-overlay {
-        display: none;
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        bottom: 0;
+        height: 100vh;
+        background: var(--bg-primary);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        z-index: 2000;
+        padding: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .social-links {
+        position: fixed;
+        bottom: 2rem;
+        left: 0;
+        right: 0;
+        justify-content: center;
+        z-index: 2000;
+        padding: 2rem;
+    }
+
+    .theme-toggle {
+        margin-left: 1rem;
+        position: static;
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0.5rem;
+    }
+
+    .menu-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
         background: rgba(0, 0, 0, 0.5);
         z-index: 1999;
-        opacity: 0;
-        transition: opacity 0.3s ease;
     }
 
     nav.menu-open .menu-overlay {
         display: block;
-        opacity: 1;
-    }
-
-    .social-links a {
-        font-size: 1.1rem;
-        padding: 0.5rem 1rem;
-    }
-
-    /* Desktop social links should be hidden in mobile */
-    .nav-content > .social-links {
-        display: none;
     }
 }
 
