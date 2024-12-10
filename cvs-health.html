@@ -46,6 +46,54 @@
         
         .theme-toggle {
             margin-left: 1rem;
+            position: relative;
+        }
+        
+        .theme-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 12px;
+            display: none;
+        }
+        
+        .theme-toggle:hover .theme-dropdown {
+            display: block;
+        }
+        
+        .theme-option {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .theme-option:hover {
+            background-color: var(--bg-secondary);
+        }
+        
+        .color-swatch {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .color-swatch.dark {
+            background-color: #333;
+        }
+        
+        .color-swatch.light {
+            background-color: #fff;
+        }
+        
+        .color-swatch.green {
+            background-color: #0f0;
+        }
+        
+        .color-swatch.purple {
+            background-color: #f0f;
         }
         
         .sun-icon {
@@ -61,33 +109,28 @@
     <nav>
         <div class="menu-overlay"></div>
         <div class="nav-content">
+            <button class="menu-button" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
             <a href="/" class="logo">JO</a>
             <ul>
-                <li style="--item-index: 0"><a href="index.html#work">Work</a></li>
-                <li style="--item-index: 1"><a href="index.html#about">About</a></li>
-                <li style="--item-index: 2"><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
             <div class="social-links">
                 <a href="https://www.threads.net/@jacob.olenick" target="_blank">Threads</a>
                 <a href="https://bsky.app/profile/jacobolenick" target="_blank">Bluesky</a>
                 <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <line x1="12" y1="2" x2="12" y2="22"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                    </svg>
+                </button>
             </div>
-            <button class="theme-toggle" aria-label="Toggle theme">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-            </button>
-            <button class="menu-button" aria-label="Toggle menu">
-                <span class="hamburger"></span>
-            </button>
         </div>
     </nav>
 
@@ -185,44 +228,22 @@
             
             // Theme toggle functionality
             const themeToggle = document.querySelector('.theme-toggle');
-            const sunIcon = themeToggle.querySelector('svg');
             const root = document.documentElement;
+            const themes = ['dark-blue', 'light', 'green', 'purple'];
             
             // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme) {
-                root.setAttribute('data-theme', savedTheme);
-                updateThemeIcon(savedTheme);
-            }
+            const savedTheme = localStorage.getItem('theme') || 'dark-blue';
+            root.setAttribute('data-theme', savedTheme);
             
             themeToggle.addEventListener('click', () => {
                 const currentTheme = root.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                const currentIndex = themes.indexOf(currentTheme);
+                const nextIndex = (currentIndex + 1) % themes.length;
+                const newTheme = themes[nextIndex];
                 
                 root.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
-                updateThemeIcon(newTheme);
             });
-            
-            function updateThemeIcon(theme) {
-                if (theme === 'light') {
-                    sunIcon.innerHTML = `
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    `;
-                } else {
-                    sunIcon.innerHTML = `
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    `;
-                }
-            }
         });
     </script>
 

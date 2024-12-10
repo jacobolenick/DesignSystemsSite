@@ -1,3 +1,35 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.querySelector('.theme-toggle');
+    const root = document.documentElement;
+
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', savedTheme);
+
+    // Toggle dropdown on click
+    themeToggle.addEventListener('click', (e) => {
+        themeToggle.classList.toggle('active');
+        e.stopPropagation();
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+        themeToggle.classList.remove('active');
+    });
+
+    // Handle theme selection
+    const themeOptions = document.querySelectorAll('.theme-option');
+    themeOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            const newTheme = option.getAttribute('data-theme');
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.classList.remove('active');
+            e.stopPropagation();
+        });
+    });
+});
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {

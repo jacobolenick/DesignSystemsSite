@@ -17,6 +17,22 @@
     --accent: #e6e9f0;
 }
 
+:root[data-theme="green"] {
+    --bg-primary: #1a2f1a;
+    --bg-secondary: #243024;
+    --text-primary: #ffffff;
+    --text-secondary: #92a992;
+    --accent: #2d4a2d;
+}
+
+:root[data-theme="purple"] {
+    --bg-primary: #1a1a2f;
+    --bg-secondary: #242430;
+    --text-primary: #ffffff;
+    --text-secondary: #9292a9;
+    --accent: #2d2d4a;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -45,8 +61,8 @@ nav {
     max-width: var(--max-width);
     margin: 0 auto;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 3rem;
 }
 
 .logo {
@@ -55,6 +71,7 @@ nav {
     color: var(--text-primary);
     text-decoration: none;
     letter-spacing: -0.03em;
+    order: 1;
 }
 
 nav ul {
@@ -63,23 +80,7 @@ nav ul {
     gap: 3rem;
     margin: 0;
     padding: 0;
-}
-
-.theme-toggle {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.3s ease;
-    margin-left: auto;
-}
-
-.menu-button {
-    display: none;
+    order: 2;
 }
 
 nav a {
@@ -97,6 +98,7 @@ nav a:hover {
     display: flex;
     gap: 1.5rem;
     align-items: center;
+    order: 3;
 }
 
 .social-links a {
@@ -108,6 +110,93 @@ nav a:hover {
 
 .social-links a:hover {
     color: var(--text-primary);
+}
+
+.theme-toggle {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-primary);
+}
+
+.theme-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 0.5rem;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+}
+
+.theme-toggle.active .theme-dropdown {
+    display: block;
+}
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.theme-option:hover {
+    background: var(--accent);
+}
+
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--text-secondary);
+}
+
+.color-swatch.dark {
+    background: #0a0f1a;
+}
+
+.color-swatch.light {
+    background: #ffffff;
+}
+
+.color-swatch.green {
+    background: #1a2f1a;
+}
+
+.color-swatch.purple {
+    background: #1a1a2f;
+}
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        display: none !important;
+    }
 }
 
 /* Hamburger Menu Styles */
@@ -176,80 +265,115 @@ nav.menu-open .menu-button .hamburger::after {
         background: var(--bg-primary);
     }
 
-    .nav-content {
-        justify-content: flex-start;
-    }
-
-    .logo {
-        margin-right: auto;
-    }
-
     .menu-button {
         display: block;
         margin-left: 1rem;
         order: 3;
     }
 
-    nav ul, .social-links {
+    nav ul {
         display: none;
-    }
-
-    .theme-toggle {
-        order: 2;
-        margin: 0;
-        margin-left: 1rem;
-    }
-
-    .menu-button {
-        margin-right: calc(var(--spacing) * -1);
-        padding-right: var(--spacing);
-    }
-
-    nav.menu-open ul {
-        display: flex;
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        height: 100vh;
         background: var(--bg-primary);
         flex-direction: column;
-        justify-content: center;
-        gap: 2rem;
+        align-items: center;
+        padding: 10rem 2rem 2rem;
+        gap: 3rem;
+        height: 100vh;
         z-index: 2000;
-        padding: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    nav ul li {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition-delay: calc(var(--item-index) * 0.1s);
+    }
+
+    nav.menu-open ul li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    nav.menu-open ul {
+        display: flex;
+        transform: translateX(0);
+    }
+
+    nav ul li a {
         font-size: 1.5rem;
+        font-weight: 500;
+        padding: 1rem;
+        display: block;
+        text-align: center;
     }
 
     .social-links {
+        display: none;
+        visibility: hidden;
         position: fixed;
-        bottom: 2rem;
+        bottom: 4rem;
         left: 0;
         right: 0;
         justify-content: center;
-        z-index: 2000;
+        background: var(--bg-primary);
         padding: 2rem;
+        gap: 3rem;
+        z-index: 2000;
+        opacity: 0;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    nav.menu-open .social-links {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
     }
 
     .theme-toggle {
-        margin-left: 1rem;
-        position: static;
-        background: none;
-        box-shadow: none;
-        border-radius: 0;
-        padding: 0.5rem;
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        z-index: 2001;
+        background: var(--accent);
+        border-radius: 50%;
+        padding: 0.75rem;
+        margin: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
+    /* Menu overlay */
     .menu-overlay {
         display: none;
         position: fixed;
-        inset: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background: rgba(0, 0, 0, 0.5);
         z-index: 1999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     nav.menu-open .menu-overlay {
         display: block;
+        opacity: 1;
+    }
+
+    .social-links a {
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    /* Desktop social links should be hidden in mobile */
+    .nav-content > .social-links {
+        display: none;
     }
 }
 
