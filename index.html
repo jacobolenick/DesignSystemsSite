@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="announcement-banner">
+        <div class="content">
+            <span>🎁 Download my free digital products</span>
+            <a href="https://jacobolenick.gumroad.com" target="_blank">Visit Gumroad</a>
+            <button class="close-button" aria-label="Close banner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+
     <nav>
         <div class="nav-content">
             <a href="/" class="logo">JO</a>
@@ -150,6 +163,24 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <script>
+        // Banner functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const banner = document.querySelector('.announcement-banner');
+            const closeButton = banner.querySelector('.close-button');
+            
+            // Show banner after a short delay
+            setTimeout(() => {
+                banner.classList.add('visible');
+            }, 1000);
+
+            // Close banner when clicking the close button
+            closeButton.addEventListener('click', () => {
+                banner.classList.remove('visible');
             });
         });
     </script>

@@ -28,6 +28,12 @@ nav {
     top: 0;
     z-index: 1000;
     background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(10,15,26,0) 100%);
+    transition: transform 0.3s ease;
+}
+
+/* Move nav down when banner is visible */
+.announcement-banner.visible ~ nav {
+    transform: translateY(3rem);
 }
 
 .nav-content {
@@ -84,6 +90,16 @@ main {
     padding: 0 var(--spacing);
     max-width: 1400px;
     margin: 0 auto;
+    padding-top: calc(8rem + 3rem);
+    transition: padding-top 0.3s ease;
+}
+
+.announcement-banner.visible ~ main {
+    padding-top: calc(8rem + 3rem);
+}
+
+main:not(.announcement-banner.visible ~ main) {
+    padding-top: 8rem;
 }
 
 section {
@@ -377,6 +393,74 @@ footer {
 .mentorship-list svg {
     flex-shrink: 0;
     color: var(--accent);
+}
+
+/* Announcement Banner */
+.announcement-banner {
+    background: linear-gradient(90deg, var(--accent) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    text-align: center;
+    padding: 0.75rem var(--spacing);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: 3rem;
+}
+
+.announcement-banner.visible {
+    transform: translateY(0);
+}
+
+.announcement-banner .content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.announcement-banner a {
+    color: var(--text-primary);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.announcement-banner a:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.announcement-banner .close-button {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.25rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.announcement-banner .close-button:hover {
+    opacity: 1;
 }
 
 /* Back link styling */
