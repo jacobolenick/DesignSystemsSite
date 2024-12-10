@@ -22,6 +22,11 @@
 
     <nav>
         <div class="nav-content">
+            <button class="menu-button" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"/>
+                </svg>
+            </button>
             <a href="/" class="logo">JO</a>
             <ul>
                 <li><a href="#work">Work</a></li>
@@ -183,6 +188,20 @@
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
+                });
+            });
+
+            // Mobile menu functionality
+            document.querySelector('.menu-button').addEventListener('click', function() {
+                document.querySelector('nav').classList.toggle('menu-open');
+                document.body.style.overflow = document.querySelector('nav').classList.contains('menu-open') ? 'hidden' : '';
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.querySelector('nav').classList.remove('menu-open');
+                    document.body.style.overflow = '';
                 });
             });
         });
