@@ -47,7 +47,11 @@
 </head>
 <body>
     <nav>
+        <div class="menu-overlay"></div>
         <div class="nav-content">
+            <button class="menu-button" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
             <a href="/" class="logo">JO</a>
             <ul>
                 <li><a href="index.html#work">Work</a></li>
@@ -55,9 +59,9 @@
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
             <div class="social-links">
-                <a href="https://www.threads.net/@yourusername" target="_blank">Threads</a>
-                <a href="https://bsky.app/profile/yourusername" target="_blank">Bluesky</a>
-                <a href="https://www.linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+                <a href="https://www.threads.net/@jacob.olenick" target="_blank">Threads</a>
+                <a href="https://bsky.app/profile/jacobolenick" target="_blank">Bluesky</a>
+                <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
             </div>
         </div>
     </nav>
@@ -129,6 +133,38 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const nav = document.querySelector('nav');
+            const menuButton = document.querySelector('.menu-button');
+            const menuOverlay = document.querySelector('.menu-overlay');
+
+            function toggleMenu() {
+                nav.classList.toggle('menu-open');
+                document.body.style.overflow = nav.classList.contains('menu-open') ? 'hidden' : '';
+            }
+
+            menuButton.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', toggleMenu);
+
+            // Close menu when clicking a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('menu-open');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
+                    toggleMenu();
+                }
             });
         });
     </script>
