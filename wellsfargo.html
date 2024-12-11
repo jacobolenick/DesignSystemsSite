@@ -68,6 +68,46 @@
             margin-left: 1rem;
             position: relative;
         }
+
+        .back-link {
+            display: inline-block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .project-number {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 1rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
@@ -95,7 +135,10 @@
     </nav>
 
     <main>
+        <a href="index.html#work" class="back-link">← Back to projects</a>
+        
         <div class="project-header">
+            <span class="project-number">04</span>
             <h1>Wells Fargo Vantage</h1>
             <p>Building a new platform for businesses to bank better with Wells Fargo</p>
         </div>
@@ -137,6 +180,12 @@
         </div>
     </main>
 
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </a>
+
     <script>
         const menuButton = document.querySelector('.menu-button');
         const menuOverlay = document.querySelector('.menu-overlay');
@@ -152,21 +201,56 @@
 
         // Theme toggle functionality
         const themeToggle = document.querySelector('.theme-toggle');
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-            const isDark = document.body.classList.contains('dark-theme');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
-
-        themeToggle.addEventListener('click', toggleTheme);
-
+        const root = document.documentElement;
+        const themes = ['dark-blue', 'light', 'green', 'purple'];
+        
         // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
-            document.body.classList.add('dark-theme');
-        }
+        const savedTheme = localStorage.getItem('theme') || 'dark-blue';
+        root.setAttribute('data-theme', savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themes.length;
+            const newTheme = themes[nextIndex];
+            
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Back to top functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
+                toggleMenu();
+            }
+        });
     </script>
 </body>
 </html>
