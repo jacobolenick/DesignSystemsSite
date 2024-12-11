@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wells Fargo Vantage - Jacob Olenick</title>
+    <link rel="icon" type="image/png" href="fav1.png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .project-header {
+            padding-top: 15vh;
+            margin-bottom: 4rem;
+        }
+        
+        .project-content {
+            max-width: 800px;
+        }
+        
+        .project-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .project-image {
+            margin: 4rem 0;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            margin: 4rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+        
+        .project-content ul {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .project-content li {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        main {
+            padding-top: 8rem;
+        }
+        
+        .theme-toggle {
+            margin-left: 1rem;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="menu-overlay"></div>
+        <div class="nav-content">
+            <button class="menu-button" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+            <a href="/" class="logo">JO</a>
+            <ul>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://www.threads.net/@jacob.olenick" target="_blank">Threads</a>
+                <a href="https://bsky.app/profile/jacobolenick" target="_blank">Bluesky</a>
+                <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    Theme
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="project-header">
+            <h1>Wells Fargo Vantage</h1>
+            <p>Building a new platform for businesses to bank better with Wells Fargo</p>
+        </div>
+
+        <div class="project-content">
+    
+
+            <div class="video-container">
+                <!-- Replace the src with your video URL -->
+                <iframe src="vantage.mp4" title="Wells Fargo Vantage Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <p>Wells Fargo's Vantage is a new digital banking platform designed to provide customers with a more personalized and intuitive banking experience. It was launched in 2022 and has been well-received by customers, with many praising its ease of use and wide range of features.</p>
+            <p>I was a Senior Lead Product Design contractor on the Vantage team and was responsible for the design of the platform's core features. My work included working closely with project managers, design managers, stakeholders, and the research team to understand the business goals and needs of our enterprise clients. I also had to anticipate what needed to be designed and execute pixel-perfect designs, utilizing our current design system while also adding new components and variants in our tool of choice, Figma.</p>
+
+            <h2>My Role</h2>
+            <p></p>
+            <ul>
+                <li>Anticipate what needs to be designed and execute pixel-perfect designs.</li>
+                <li>Work closely with project managers, design managers, stakeholders, and the research team to understand the business goals and needs of our enterprise clients.</li>
+                <li>Utilize our current design system while also adding new components and variants in our tool of choice, Figma.</li>
+                <li>Collaborate with developers to implement my designs.</li>
+                <li>Conduct user research and usability testing to ensure that my designs meet the needs of our users.</li>
+                <li>Present my designs to stakeholders and get feedback.</li>
+                <li>Iterate on my designs based on feedback.</li>
+                <li>Work with the team to launch the platform on time and within budget.</li>
+            </ul>
+            <br>
+            <h2>Challenges</h2>
+            <p>One of the biggest challenges I faced was working with a large and complex team. There were many different stakeholders with different needs and priorities, and it was important to be able to balance all of these needs while still delivering a high-quality product.</p>
+            <p>Another challenge was working with a tight deadline. The platform had to be launched on time and within budget, so there was no room for error.</p>
+            <br>
+            <h2>Solutions</h2>
+            <br>
+            <p>The Vantage platform was a success. It was launched on time and within budget and has been well-received by customers. The platform has also been successful in terms of business metrics, with Wells Fargo reporting that it has seen a significant increase in customer engagement since the launch of Vantage.</p>
+            <h2>Conclusion</h2>
+            <p>I am proud of the work I contributed to the Vantage project. The platform has been a success and has helped Wells Fargo improve its customer experience. I am confident that it will continue to be a valuable asset to Wells Fargo for many years to come.</p>
+            
+        </div>
+    </main>
+
+    <script>
+        const menuButton = document.querySelector('.menu-button');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        const nav = document.querySelector('nav');
+
+        function toggleMenu() {
+            nav.classList.toggle('menu-open');
+            document.body.classList.toggle('no-scroll');
+        }
+
+        menuButton.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
+</body>
+</html>
