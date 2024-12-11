@@ -28,6 +28,33 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
         });
     });
+
+    // Banner functionality
+    const banner = document.querySelector('.announcement-banner');
+    const nav = document.querySelector('nav');
+    const closeButton = banner.querySelector('.close-button');
+    const bannerLink = banner.querySelector('.banner-link');
+
+    // Show banner on page load
+    setTimeout(() => {
+        banner.classList.add('visible');
+        nav.classList.add('banner-visible');
+    }, 500);
+
+    // Handle banner close
+    closeButton.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent the link click
+        e.stopPropagation(); // Prevent event bubbling
+        banner.classList.remove('visible');
+        nav.classList.remove('banner-visible');
+        localStorage.setItem('bannerClosed', 'true');
+    });
+
+    // Check if banner was previously closed
+    if (localStorage.getItem('bannerClosed') === 'true') {
+        banner.classList.remove('visible');
+        nav.classList.remove('banner-visible');
+    }
 });
 
 // Smooth scrolling for navigation links
