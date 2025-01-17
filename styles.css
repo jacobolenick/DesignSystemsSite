@@ -446,72 +446,61 @@ section {
     max-width: 600px;
 }
 
-.projects {
-    padding: 8rem 2rem;
+#work {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    border-radius: 12px;
+    padding: var(--spacing);
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
 .project {
-    padding: 4rem 0;
-    border-top: 1px solid var(--accent);
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    transition: opacity 0.3s ease;
     position: relative;
-    overflow: hidden;
+    background: var(--bg-secondary);
+    padding: 0;
     border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project:hover {
-    opacity: 1;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.project-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+.project img {
     width: 100%;
-    height: 100%;
-    opacity: 0;
-    transform: translateY(100%);
-    transition: all 0.4s ease;
-    pointer-events: none;
-    z-index: -1;
-}
-
-.project-overlay img {
-    width: 100%;
-    height: 100%;
+    aspect-ratio: 16/9;
     object-fit: cover;
-    opacity: 0.15;
-    border-radius: 12px;
 }
 
-.project:hover .project-overlay {
-    opacity: 1;
-    transform: translateY(0);
+.project-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .project-number {
-    color: var(--text-secondary);
     font-size: 0.875rem;
+    color: var(--text-secondary);
     display: block;
-    margin-bottom: 1rem;
 }
 
-h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 1rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+.project h2 {
+    margin: 0;
 }
 
 .project p {
     color: var(--text-secondary);
-    max-width: 600px;
+    margin: 0;
 }
 
 #about {
@@ -557,6 +546,12 @@ h2 {
 
 .about-image img:hover {
     filter: grayscale(0%) brightness(100%);
+}
+
+@media (max-width: 768px) {
+    #work {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
