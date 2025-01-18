@@ -5,6 +5,8 @@
     --text-primary: #ffffff;
     --text-secondary: #8a92a9;
     --accent: #1e2d4a;
+    --accent-bright: #3b5998;
+    --grid-color: rgba(255, 255, 255, 0.03);
     --spacing: clamp(1rem, 2vw, 3rem);
     --max-width: 1400px;
 }
@@ -15,6 +17,8 @@
     --text-primary: #1a1a1a;
     --text-secondary: #666666;
     --accent: #e6e9f0;
+    --accent-bright: #3b5998;
+    --grid-color: rgba(0, 0, 0, 0.03);
 }
 
 :root[data-theme="green"] {
@@ -23,6 +27,8 @@
     --text-primary: #ffffff;
     --text-secondary: #92a992;
     --accent: #2d4a2d;
+    --accent-bright: #4CAF50;
+    --grid-color: rgba(255, 255, 255, 0.03);
 }
 
 :root[data-theme="purple"] {
@@ -31,6 +37,18 @@
     --text-primary: #ffffff;
     --text-secondary: #9292a9;
     --accent: #2d2d4a;
+    --accent-bright: #7B68EE;
+    --grid-color: rgba(255, 255, 255, 0.03);
+}
+
+:root[data-theme="black"] {
+    --bg-primary: #000000;
+    --bg-secondary: #121212;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent: #1f1f1f;
+    --accent-bright: #4169E1;
+    --grid-color: rgba(255, 255, 255, 0.07);
 }
 
 * {
@@ -42,9 +60,37 @@
 body {
     font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--bg-primary);
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
     color: var(--text-primary);
     line-height: 1.6;
     font-size: clamp(1rem, 1.1vw, 1.2rem);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(var(--bg-primary), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(transparent, var(--bg-primary));
+    pointer-events: none;
+    z-index: 1;
 }
 
 nav {
@@ -187,6 +233,10 @@ nav a:hover {
 
 .color-swatch.purple {
     background: #1a1a2f;
+}
+
+.color-swatch.black {
+    background: #000000;
 }
 
 @media (max-width: 768px) {
@@ -435,9 +485,9 @@ section {
     bottom: -0.1em;
     width: 100%;
     height: 0.2em;
-    background-color: var(--accent);
+    background-color: var(--accent-bright);
     z-index: -1;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 #hero p {
@@ -501,6 +551,55 @@ section {
 .project p {
     color: var(--text-secondary);
     margin: 0;
+}
+
+.project-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8rem auto;
+    max-width: 1000px;
+    padding: 0 2rem;
+    gap: 6rem;
+}
+
+.project-navigation a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 1.5rem;
+    flex-basis: 250px;
+    border-radius: 8px;
+}
+
+.project-navigation a:first-child {
+    text-align: left;
+    margin-right: auto;
+}
+
+.project-navigation a:last-child {
+    text-align: right;
+    margin-left: auto;
+}
+
+.project-navigation a:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+}
+
+@media (max-width: 768px) {
+    .project-navigation {
+        padding: 0 1rem;
+        gap: 2rem;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .project-navigation a {
+        flex-basis: auto;
+        text-align: center !important;
+        margin: 0 !important;
+    }
 }
 
 #about {

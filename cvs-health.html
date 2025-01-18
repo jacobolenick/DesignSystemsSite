@@ -96,12 +96,30 @@
             background-color: #f0f;
         }
         
+        .color-swatch.black {
+            background-color: #000;
+        }
+        
         .sun-icon {
             transition: transform 0.3s ease-in-out;
         }
         
         [data-theme="dark"] .sun-icon {
             transform: rotate(180deg);
+        }
+        
+        .project-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 4rem auto;
+            max-width: 600px;
+        }
+        
+        .project-navigation a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
     </style>
 </head>
@@ -124,6 +142,28 @@
                 <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
                 <button class="theme-toggle" aria-label="Toggle theme">
                     Theme
+                    <div class="theme-dropdown">
+                        <div class="theme-option" data-theme="dark">
+                            <div class="color-swatch dark"></div>
+                            <span>Dark</span>
+                        </div>
+                        <div class="theme-option" data-theme="light">
+                            <div class="color-swatch light"></div>
+                            <span>Light</span>
+                        </div>
+                        <div class="theme-option" data-theme="black">
+                            <div class="color-swatch black"></div>
+                            <span>Black</span>
+                        </div>
+                        <div class="theme-option" data-theme="green">
+                            <div class="color-swatch green"></div>
+                            <span>Green</span>
+                        </div>
+                        <div class="theme-option" data-theme="purple">
+                            <div class="color-swatch purple"></div>
+                            <span>Purple</span>
+                        </div>
+                    </div>
                 </button>
             </div>
         </div>
@@ -164,9 +204,9 @@
                 <li>Streamlined design review process</li>
             </ul>
             
-            <div class="project-navigation" style="display: flex; justify-content: space-between; align-items: center; margin: 4rem auto; max-width: 600px;">
-                <a href="wellsfargo.html" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease;">← Previous Project:<br>Wells Fargo</a>
-                <a href="orgspace.html" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease;">Next Project:<br>OrgSpace →</a>
+            <div class="project-navigation">
+                <a href="credit-one.html">Previous Project: Credit One Bank</a>
+                <a href="orgspace.html">Next Project: Orgspace</a>
             </div>
         </div>
     </main>
@@ -231,10 +271,10 @@
             // Theme toggle functionality
             const themeToggle = document.querySelector('.theme-toggle');
             const root = document.documentElement;
-            const themes = ['dark-blue', 'light', 'green', 'purple'];
+            const themes = ['dark', 'light', 'black', 'green', 'purple'];
             
             // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme') || 'dark-blue';
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             root.setAttribute('data-theme', savedTheme);
             
             themeToggle.addEventListener('click', () => {

@@ -43,6 +43,20 @@
         main {
             padding-top: 8rem;
         }
+        
+        .project-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 4rem auto;
+            max-width: 600px;
+        }
+        
+        .project-navigation a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -142,9 +156,9 @@
             <br>
             <img src="ui.jpg" alt="Credit One Bank Design System" class="project-image">
            
-            <div class="project-navigation" style="display: flex; justify-content: space-between; align-items: center; margin: 4rem auto; max-width: 600px;">
-                <a href="crtside.html" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease;">← Previous Project:<br>CRT Side</a>
-                <a href="wellsfargo.html" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease;">Next Project:<br>Wells Fargo →</a>
+            <div class="project-navigation">
+                <a href="crtside.html">← Previous Project:<br>CRT Side</a>
+                <a href="cvs-health.html">Next Project:<br>CVS Health →</a>
             </div>
     
         </div>
@@ -157,6 +171,45 @@
     </a>
 
     <script src="/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.querySelector('.theme-toggle');
+            const root = document.documentElement;
+            const themes = ['dark', 'light', 'black', 'green', 'purple'];
+            let currentThemeIndex = themes.indexOf(localStorage.getItem('theme')) || 0;
+
+            // Initialize theme
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            root.setAttribute('data-theme', savedTheme);
+
+            // Toggle theme on click
+            themeToggle.addEventListener('click', () => {
+                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+                const newTheme = themes[currentThemeIndex];
+                root.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            // Menu functionality
+            const menuButton = document.querySelector('.menu-button');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const nav = document.querySelector('nav');
+
+            function toggleMenu() {
+                nav.classList.toggle('menu-open');
+            }
+
+            menuButton.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', toggleMenu);
+
+            // Close menu when clicking a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('menu-open');
+                });
+            });
+        });
+    </script>
     <script>
         // Back to top button functionality
         const backToTop = document.querySelector('.back-to-top');
@@ -174,56 +227,6 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu functionality
-            const nav = document.querySelector('nav');
-            const menuButton = document.querySelector('.menu-button');
-            const menuOverlay = document.querySelector('.menu-overlay');
-
-            function toggleMenu() {
-                nav.classList.toggle('menu-open');
-                document.body.style.overflow = nav.classList.contains('menu-open') ? 'hidden' : '';
-            }
-
-            menuButton.addEventListener('click', toggleMenu);
-            menuOverlay.addEventListener('click', toggleMenu);
-
-            // Close menu when clicking a link
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', () => {
-                    nav.classList.remove('menu-open');
-                    document.body.style.overflow = '';
-                });
-            });
-
-            // Close menu on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
-                    toggleMenu();
-                }
-            });
-
-            // Theme toggle functionality
-            const themeToggle = document.querySelector('.theme-toggle');
-            const root = document.documentElement;
-            const themes = ['dark-blue', 'light', 'green', 'purple'];
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme') || 'dark-blue';
-            root.setAttribute('data-theme', savedTheme);
-            
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = root.getAttribute('data-theme');
-                const currentIndex = themes.indexOf(currentTheme);
-                const nextIndex = (currentIndex + 1) % themes.length;
-                const newTheme = themes[nextIndex];
-                
-                root.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
             });
         });
     </script>

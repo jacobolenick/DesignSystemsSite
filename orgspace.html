@@ -89,6 +89,72 @@
             cursor: pointer;
             color: var(--text-primary);
             border-radius: 8px;
+            position: relative;
+        }
+        
+        .theme-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .theme-toggle:hover .theme-dropdown {
+            display: block;
+        }
+        
+        .theme-option {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .theme-option:hover {
+            background: var(--bg-primary);
+        }
+        
+        .color-swatch {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        
+        .color-swatch.dark {
+            background: #333;
+        }
+        
+        .color-swatch.light {
+            background: #fff;
+        }
+        
+        .color-swatch.black {
+            background: #000;
+        }
+        
+        .color-swatch.green {
+            background: #0f0;
+        }
+        
+        .color-swatch.purple {
+            background: #f0f;
+        }
+        
+        .project-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 4rem auto;
+            max-width: 600px;
+        }
+        
+        .project-navigation a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
     </style>
 </head>
@@ -111,6 +177,28 @@
                 <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
                 <button class="theme-toggle" aria-label="Toggle theme">
                     Theme
+                    <div class="theme-dropdown">
+                        <div class="theme-option" data-theme="dark">
+                            <div class="color-swatch dark"></div>
+                            <span>Dark</span>
+                        </div>
+                        <div class="theme-option" data-theme="light">
+                            <div class="color-swatch light"></div>
+                            <span>Light</span>
+                        </div>
+                        <div class="theme-option" data-theme="black">
+                            <div class="color-swatch black"></div>
+                            <span>Black</span>
+                        </div>
+                        <div class="theme-option" data-theme="green">
+                            <div class="color-swatch green"></div>
+                            <span>Green</span>
+                        </div>
+                        <div class="theme-option" data-theme="purple">
+                            <div class="color-swatch purple"></div>
+                            <span>Purple</span>
+                        </div>
+                    </div>
                 </button>
             </div>
         </div>
@@ -156,9 +244,9 @@
             <p> Then, we pushed them to Github.   </p>
             <img src="orgcolor.jpg" alt="Orgspace Design System" class="project-image">
             
-            <div class="project-navigation" style="display: flex; justify-content: space-between; align-items: center; margin: 4rem auto; max-width: 600px;">
-                <a href="cvs-health.html" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease;">← Previous Project:<br>CVS Health</a>
-                <a href="crtside.html" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease;">Next Project:<br>CRT Side →</a>
+            <div class="project-navigation">
+                <a href="cvs-health.html">Previous Project: CVS Health</a>
+                <a href="wellsfargo.html">Next Project: Wells Fargo</a>
             </div>
         </div>
     </main>
@@ -223,7 +311,7 @@
             // Theme toggle functionality
             const themeToggle = document.querySelector('.theme-toggle');
             const root = document.documentElement;
-            const themes = ['dark-blue', 'light', 'green', 'purple'];
+            const themes = ['dark-blue', 'light', 'green', 'purple', 'black'];
             
             // Check for saved theme preference
             const savedTheme = localStorage.getItem('theme') || 'dark-blue';
@@ -237,6 +325,18 @@
                 
                 root.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
+            });
+            
+            // Theme dropdown functionality
+            const themeDropdown = document.querySelector('.theme-dropdown');
+            const themeOptions = document.querySelectorAll('.theme-option');
+            
+            themeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const theme = option.getAttribute('data-theme');
+                    root.setAttribute('data-theme', theme);
+                    localStorage.setItem('theme', theme);
+                });
             });
         });
     </script>

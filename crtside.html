@@ -46,6 +46,58 @@
         
         .theme-toggle {
             margin-left: 1rem;
+            position: relative;
+        }
+        
+        .theme-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 12px;
+            display: none;
+        }
+        
+        .theme-toggle:hover .theme-dropdown {
+            display: block;
+        }
+        
+        .theme-option {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .theme-option:hover {
+            background-color: var(--bg-tertiary);
+        }
+        
+        .color-swatch {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        
+        .color-swatch.dark {
+            background-color: #333;
+        }
+        
+        .color-swatch.light {
+            background-color: #fff;
+        }
+        
+        .color-swatch.black {
+            background-color: #000;
+        }
+        
+        .color-swatch.green {
+            background-color: #0f0;
+        }
+        
+        .color-swatch.purple {
+            background-color: #f0f;
         }
         
         .sun-icon {
@@ -76,6 +128,28 @@
                 <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
                 <button class="theme-toggle" aria-label="Toggle theme">
                     Theme
+                    <div class="theme-dropdown">
+                        <div class="theme-option" data-theme="dark">
+                            <div class="color-swatch dark"></div>
+                            <span>Dark</span>
+                        </div>
+                        <div class="theme-option" data-theme="light">
+                            <div class="color-swatch light"></div>
+                            <span>Light</span>
+                        </div>
+                        <div class="theme-option" data-theme="black">
+                            <div class="color-swatch black"></div>
+                            <span>Black</span>
+                        </div>
+                        <div class="theme-option" data-theme="green">
+                            <div class="color-swatch green"></div>
+                            <span>Green</span>
+                        </div>
+                        <div class="theme-option" data-theme="purple">
+                            <div class="color-swatch purple"></div>
+                            <span>Purple</span>
+                        </div>
+                    </div>
                 </button>
             </div>
         </div>
@@ -112,9 +186,9 @@
     <br>
     <img src="crtsideui.jpg" alt="Crtside Design System" class="project-image">
             
-            <div class="project-navigation" style="display: flex; justify-content: space-between; align-items: center; margin: 4rem auto; max-width: 600px;">
-                <a href="orgspace.html" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease;">← Previous Project:<br>OrgSpace</a>
-                <a href="credit-one.html" style="color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease;">Next Project:<br>Credit One Bank →</a>
+            <div class="project-navigation">
+                <a href="wellsfargo.html">← Previous Project:<br>Wells Fargo</a>
+                <a href="credit-one.html">Next Project:<br>Credit One Bank →</a>
             </div>
         </div>
     </main>
@@ -179,10 +253,10 @@
             // Theme toggle functionality
             const themeToggle = document.querySelector('.theme-toggle');
             const root = document.documentElement;
-            const themes = ['dark-blue', 'light', 'green', 'purple'];
+            const themes = ['dark', 'light', 'black', 'green', 'purple'];
             
             // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme') || 'dark-blue';
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             root.setAttribute('data-theme', savedTheme);
             
             themeToggle.addEventListener('click', () => {
@@ -193,6 +267,18 @@
                 
                 root.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
+            });
+            
+            // Theme dropdown functionality
+            const themeDropdown = document.querySelector('.theme-dropdown');
+            const themeOptions = document.querySelectorAll('.theme-option');
+            
+            themeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const newTheme = option.getAttribute('data-theme');
+                    root.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                });
             });
         });
     </script>
