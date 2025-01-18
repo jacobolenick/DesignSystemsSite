@@ -3,31 +3,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
 
     // Initialize theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const savedTheme = localStorage.getItem('theme') || 'black';
     root.setAttribute('data-theme', savedTheme);
+    updateThemeToggleIcon(savedTheme);
 
-    // Toggle dropdown on click
-    themeToggle.addEventListener('click', (e) => {
-        themeToggle.classList.toggle('active');
-        e.stopPropagation();
+    // Toggle theme on click
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'black' : 'light';
+        
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeToggleIcon(newTheme);
     });
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', () => {
-        themeToggle.classList.remove('active');
-    });
-
-    // Handle theme selection
-    const themeOptions = document.querySelectorAll('.theme-option');
-    themeOptions.forEach(option => {
-        option.addEventListener('click', (e) => {
-            const newTheme = option.getAttribute('data-theme');
-            root.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            themeToggle.classList.remove('active');
-            e.stopPropagation();
-        });
-    });
+    function updateThemeToggleIcon(theme) {
+        const sunIcon = themeToggle.querySelector('.sun-icon');
+        const moonIcon = themeToggle.querySelector('.moon-icon');
+        
+        if (theme === 'light') {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        } else {
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        }
+    }
 
     // Banner functionality
     const banner = document.querySelector('.announcement-banner');

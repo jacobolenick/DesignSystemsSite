@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credit One Bank Design System - Jacob Olenick</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         .project-header {
             padding-top: 15vh;
@@ -76,9 +76,6 @@
                 <a href="https://www.threads.net/@jacob.olenick" target="_blank">Threads</a>
                 <a href="https://bsky.app/profile/jacobolenick" target="_blank">Bluesky</a>
                 <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    Theme
-                </button>
             </div>
         </div>
     </nav>
@@ -88,7 +85,8 @@
         
         <div class="project-header">
             <span class="project-number">01</span>
-            <h1>Credit One Bank</h1>
+            <h1><span class="highlight">Credit One Bank</span></h1>
+            <p>Built a comprehensive design system for C1B's internal tools, improving work efficiency by 40% and generating significant cost savings.</p>
         </div>
 
         <div class="project-content">
@@ -173,23 +171,6 @@
     <script src="/script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const themeToggle = document.querySelector('.theme-toggle');
-            const root = document.documentElement;
-            const themes = ['dark', 'light', 'black', 'green', 'purple'];
-            let currentThemeIndex = themes.indexOf(localStorage.getItem('theme')) || 0;
-
-            // Initialize theme
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            root.setAttribute('data-theme', savedTheme);
-
-            // Toggle theme on click
-            themeToggle.addEventListener('click', () => {
-                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-                const newTheme = themes[currentThemeIndex];
-                root.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-            });
-
             // Menu functionality
             const menuButton = document.querySelector('.menu-button');
             const menuOverlay = document.querySelector('.menu-overlay');
@@ -197,17 +178,11 @@
 
             function toggleMenu() {
                 nav.classList.toggle('menu-open');
+                document.body.classList.toggle('no-scroll');
             }
 
             menuButton.addEventListener('click', toggleMenu);
             menuOverlay.addEventListener('click', toggleMenu);
-
-            // Close menu when clicking a link
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', () => {
-                    nav.classList.remove('menu-open');
-                });
-            });
         });
     </script>
     <script>

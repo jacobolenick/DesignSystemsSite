@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crtside Design System - Jacob Olenick</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         .project-header {
             padding-top: 15vh;
@@ -43,70 +43,6 @@
         main {
             padding-top: 8rem;
         }
-        
-        .theme-toggle {
-            margin-left: 1rem;
-            position: relative;
-        }
-        
-        .theme-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 12px;
-            display: none;
-        }
-        
-        .theme-toggle:hover .theme-dropdown {
-            display: block;
-        }
-        
-        .theme-option {
-            padding: 0.5rem;
-            cursor: pointer;
-        }
-        
-        .theme-option:hover {
-            background-color: var(--bg-tertiary);
-        }
-        
-        .color-swatch {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 0.5rem;
-        }
-        
-        .color-swatch.dark {
-            background-color: #333;
-        }
-        
-        .color-swatch.light {
-            background-color: #fff;
-        }
-        
-        .color-swatch.black {
-            background-color: #000;
-        }
-        
-        .color-swatch.green {
-            background-color: #0f0;
-        }
-        
-        .color-swatch.purple {
-            background-color: #f0f;
-        }
-        
-        .sun-icon {
-            transition: all 0.3s ease-in-out;
-        }
-        
-        [data-theme="dark"] .sun-icon {
-            transform: rotate(180deg);
-        }
     </style>
 </head>
 <body>
@@ -126,31 +62,6 @@
                 <a href="https://www.threads.net/@jacob.olenick" target="_blank">Threads</a>
                 <a href="https://bsky.app/profile/jacobolenick" target="_blank">Bluesky</a>
                 <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    Theme
-                    <div class="theme-dropdown">
-                        <div class="theme-option" data-theme="dark">
-                            <div class="color-swatch dark"></div>
-                            <span>Dark</span>
-                        </div>
-                        <div class="theme-option" data-theme="light">
-                            <div class="color-swatch light"></div>
-                            <span>Light</span>
-                        </div>
-                        <div class="theme-option" data-theme="black">
-                            <div class="color-swatch black"></div>
-                            <span>Black</span>
-                        </div>
-                        <div class="theme-option" data-theme="green">
-                            <div class="color-swatch green"></div>
-                            <span>Green</span>
-                        </div>
-                        <div class="theme-option" data-theme="purple">
-                            <div class="color-swatch purple"></div>
-                            <span>Purple</span>
-                        </div>
-                    </div>
-                </button>
             </div>
         </div>
     </nav>
@@ -160,7 +71,7 @@
         
         <div class="project-header">
             <span class="project-number">05</span>
-            <h1>Crtside</h1>
+            <h1><span class="highlight">Crtside</span></h1>
         </div>
 
         <div class="project-content">
@@ -200,93 +111,26 @@
     </a>
 
     <script>
-        // Back to top button functionality
-        const backToTop = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu functionality
-            const nav = document.querySelector('nav');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu functionality
             const menuButton = document.querySelector('.menu-button');
             const menuOverlay = document.querySelector('.menu-overlay');
+            const nav = document.querySelector('nav');
 
             function toggleMenu() {
                 nav.classList.toggle('menu-open');
-                document.body.style.overflow = nav.classList.contains('menu-open') ? 'hidden' : '';
+                document.body.classList.toggle('no-scroll');
             }
 
             menuButton.addEventListener('click', toggleMenu);
             menuOverlay.addEventListener('click', toggleMenu);
-
-            // Close menu when clicking a link
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', () => {
-                    nav.classList.remove('menu-open');
-                    document.body.style.overflow = '';
-                });
-            });
-
-            // Close menu on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
-                    toggleMenu();
-                }
-            });
-            
-            // Theme toggle functionality
-            const themeToggle = document.querySelector('.theme-toggle');
-            const root = document.documentElement;
-            const themes = ['dark', 'light', 'black', 'green', 'purple'];
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            root.setAttribute('data-theme', savedTheme);
-            
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = root.getAttribute('data-theme');
-                const currentIndex = themes.indexOf(currentTheme);
-                const nextIndex = (currentIndex + 1) % themes.length;
-                const newTheme = themes[nextIndex];
-                
-                root.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-            });
-            
-            // Theme dropdown functionality
-            const themeDropdown = document.querySelector('.theme-dropdown');
-            const themeOptions = document.querySelectorAll('.theme-option');
-            
-            themeOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const newTheme = option.getAttribute('data-theme');
-                    root.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                });
-            });
         });
     </script>
+
+    <script src="script.js"></script>
 
     <footer>
         <p>&copy; 2024</p>
     </footer>
-
-    <script src="/script.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wells Fargo Vantage - Jacob Olenick</title>
     <link rel="icon" type="image/png" href="fav1.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <style>
         .project-header {
             padding-top: 15vh;
@@ -64,11 +64,6 @@
             padding-top: 8rem;
         }
         
-        .theme-toggle {
-            margin-left: 1rem;
-            position: relative;
-        }
-
         .back-link {
             display: inline-block;
             color: var(--text-secondary);
@@ -108,58 +103,6 @@
             opacity: 1;
             visibility: visible;
         }
-        
-        .theme-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: var(--bg-primary);
-            padding: 1rem;
-            border-radius: 12px;
-            display: none;
-        }
-        
-        .theme-toggle:hover .theme-dropdown {
-            display: block;
-        }
-        
-        .theme-option {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem;
-            cursor: pointer;
-        }
-        
-        .theme-option:hover {
-            background-color: var(--bg-secondary);
-        }
-        
-        .color-swatch {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 0.5rem;
-        }
-        
-        .dark {
-            background-color: #333;
-        }
-        
-        .light {
-            background-color: #fff;
-        }
-        
-        .black {
-            background-color: #000;
-        }
-        
-        .green {
-            background-color: #0f0;
-        }
-        
-        .purple {
-            background-color: #f0f;
-        }
     </style>
 </head>
 <body>
@@ -179,31 +122,6 @@
                 <a href="https://www.threads.net/@jacob.olenick" target="_blank">Threads</a>
                 <a href="https://bsky.app/profile/jacobolenick" target="_blank">Bluesky</a>
                 <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    Theme
-                    <div class="theme-dropdown">
-                        <div class="theme-option" data-theme="dark">
-                            <div class="color-swatch dark"></div>
-                            <span>Dark</span>
-                        </div>
-                        <div class="theme-option" data-theme="light">
-                            <div class="color-swatch light"></div>
-                            <span>Light</span>
-                        </div>
-                        <div class="theme-option" data-theme="black">
-                            <div class="color-swatch black"></div>
-                            <span>Black</span>
-                        </div>
-                        <div class="theme-option" data-theme="green">
-                            <div class="color-swatch green"></div>
-                            <span>Green</span>
-                        </div>
-                        <div class="theme-option" data-theme="purple">
-                            <div class="color-swatch purple"></div>
-                            <span>Purple</span>
-                        </div>
-                    </div>
-                </button>
             </div>
         </div>
     </nav>
@@ -213,7 +131,7 @@
         
         <div class="project-header">
             <span class="project-number">04</span>
-            <h1>Wells Fargo Vantage</h1>
+            <h1><span class="highlight">Wells Fargo</span> Vantage</h1>
             <p>Building a new platform for businesses to bank better with Wells Fargo</p>
         </div>
 
@@ -265,81 +183,53 @@
     </a>
 
     <script>
-        const menuButton = document.querySelector('.menu-button');
-        const menuOverlay = document.querySelector('.menu-overlay');
-        const nav = document.querySelector('nav');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu functionality
+            const menuButton = document.querySelector('.menu-button');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const nav = document.querySelector('nav');
 
-        function toggleMenu() {
-            nav.classList.toggle('menu-open');
-            document.body.classList.toggle('no-scroll');
-        }
+            function toggleMenu() {
+                nav.classList.toggle('menu-open');
+                document.body.classList.toggle('no-scroll');
+            }
 
-        menuButton.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', toggleMenu);
+            menuButton.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', toggleMenu);
 
-        // Theme toggle functionality
-        const themeToggle = document.querySelector('.theme-toggle');
-        const root = document.documentElement;
-        const themes = ['dark', 'light', 'black', 'green', 'purple'];
-        
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        root.setAttribute('data-theme', savedTheme);
-        
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = root.getAttribute('data-theme');
-            const currentIndex = themes.indexOf(currentTheme);
-            const nextIndex = (currentIndex + 1) % themes.length;
-            const newTheme = themes[nextIndex];
+            // Close menu when clicking a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('menu-open');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
+                    toggleMenu();
+                }
+            });
+
+            // Back to top functionality
+            const backToTop = document.querySelector('.back-to-top');
             
-            root.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-
-        // Theme dropdown functionality
-        const themeDropdown = document.querySelector('.theme-dropdown');
-        const themeOptions = document.querySelectorAll('.theme-option');
-
-        themeOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const theme = option.getAttribute('data-theme');
-                root.setAttribute('data-theme', theme);
-                localStorage.setItem('theme', theme);
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
             });
-        });
 
-        // Back to top functionality
-        const backToTop = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            backToTop.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('menu-open');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // Close menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
-                toggleMenu();
-            }
         });
     </script>
 </body>

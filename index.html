@@ -57,31 +57,6 @@
                 <a href="https://www.threads.net/@jacob.olenick" target="_blank">Threads</a>
                 <a href="https://bsky.app/profile/jacobolenick" target="_blank">Bluesky</a>
                 <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    Theme
-                    <div class="theme-dropdown">
-                        <div class="theme-option" data-theme="dark-blue">
-                            <div class="color-swatch dark-blue"></div>
-                            <span>Dark Blue</span>
-                        </div>
-                        <div class="theme-option" data-theme="light">
-                            <div class="color-swatch light"></div>
-                            <span>Light</span>
-                        </div>
-                        <div class="theme-option" data-theme="black">
-                            <div class="color-swatch black"></div>
-                            <span>Black</span>
-                        </div>
-                        <div class="theme-option" data-theme="green">
-                            <div class="color-swatch green"></div>
-                            <span>Green</span>
-                        </div>
-                        <div class="theme-option" data-theme="purple">
-                            <div class="color-swatch purple"></div>
-                            <span>Purple</span>
-                        </div>
-                    </div>
-                </button>
             </div>
         </div>
     </nav>
@@ -144,6 +119,44 @@
                 <div class="about-text">
                     <h2>About</h2>
                     <p>I specialize in creating scalable design systems that bridge the gap between design and development. My approach focuses on simplicity, consistency, and user experience.</p>
+                    <ul class="mentorship-list" style="margin-top: 24px;">
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Figma Wizard</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Communication</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Team Player</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Leader</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Presentation Skills</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>AI Tools</span>
+                        </li>
+                    </ul>
                 </div>
                 <figure class="about-image">
                     <img src="jake.jpg" alt="Profile photo" style="border-radius: 24px;" />
@@ -211,85 +224,38 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Banner functionality
-            const banner = document.querySelector('.announcement-banner');
-            const closeButton = banner.querySelector('.close-button');
-            
-            // Show banner immediately
-            banner.classList.add('visible');
-
-            // Close banner when clicking the close button
-            closeButton.addEventListener('click', () => {
-                banner.classList.remove('visible');
-                document.querySelector('nav').style.transform = 'translateY(0)';
-                document.querySelector('main').style.paddingTop = '8rem';
-            });
-
-            // Back to top functionality
-            const backToTop = document.querySelector('.back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-
-            backToTop.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Enhanced mobile menu functionality
-            const nav = document.querySelector('nav');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu functionality
             const menuButton = document.querySelector('.menu-button');
             const menuOverlay = document.querySelector('.menu-overlay');
+            const nav = document.querySelector('nav');
 
             function toggleMenu() {
                 nav.classList.toggle('menu-open');
-                document.body.style.overflow = nav.classList.contains('menu-open') ? 'hidden' : '';
+                document.body.classList.toggle('no-scroll');
             }
 
             menuButton.addEventListener('click', toggleMenu);
             menuOverlay.addEventListener('click', toggleMenu);
 
-            // Close menu when clicking a link
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', () => {
-                    nav.classList.remove('menu-open');
-                    document.body.style.overflow = '';
-                });
-            });
+            // Banner functionality
+            const banner = document.querySelector('.announcement-banner');
+            const closeButton = banner.querySelector('.close-button');
+            const bannerLink = banner.querySelector('.banner-link');
 
-            // Close menu on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
-                    toggleMenu();
-                }
-            });
+            // Show banner on page load
+            setTimeout(() => {
+                banner.classList.add('visible');
+                nav.classList.add('banner-visible');
+            }, 500);
 
-            // Theme toggle functionality
-            const themeToggle = document.querySelector('.theme-toggle');
-            const root = document.documentElement;
-            const themes = ['dark-blue', 'light', 'black', 'green', 'purple'];
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme') || 'dark-blue';
-            root.setAttribute('data-theme', savedTheme);
-            
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = root.getAttribute('data-theme');
-                const currentIndex = themes.indexOf(currentTheme);
-                const nextIndex = (currentIndex + 1) % themes.length;
-                const newTheme = themes[nextIndex];
-                
-                root.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
+            // Handle banner close
+            closeButton.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent the link click
+                e.stopPropagation(); // Prevent event bubbling
+                banner.classList.remove('visible');
+                nav.classList.remove('banner-visible');
+                localStorage.setItem('bannerClosed', 'true');
             });
         });
     </script>
