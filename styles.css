@@ -197,9 +197,14 @@ nav.menu-open .menu-button .hamburger::after {
 /* Mobile Navigation */
 @media (max-width: 768px) {
     nav {
-        padding: 1rem var(--spacing);
-        background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(10,15,26,0) 100%);
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem var(--spacing);
+        background: var(--bg-primary);
+        z-index: 1000;
+        transform: none !important;
     }
 
     nav.banner-visible {
@@ -320,6 +325,12 @@ main {
 
 main:not(.announcement-banner.visible ~ main) {
     padding-top: 8rem;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 4rem;
+    }
 }
 
 section {
@@ -912,12 +923,6 @@ footer {
         display: none;
     }
 
-    .announcement-banner span,
-    .announcement-banner a {
-        font-size: 0.9rem;
-        flex-shrink: 0;
-    }
-
     .announcement-banner a:not(.banner-link) {
         display: none;
     }
@@ -1101,6 +1106,47 @@ footer {
     .mentorship-list li {
         justify-content: center;
     }
+}
+
+/* Mobile styles for contact section */
+@media (max-width: 768px) {
+    #contact .contact-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .contact-text {
+        max-width: 100%;
+    }
+
+    .contact-text p {
+        font-size: 1.1rem;
+    }
+
+    .contact-image img {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .mentorship-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .mentorship-list li {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+}
+
+/* Hide banner for Boline page */
+body.boline .announcement-banner {
+    display: none;
 }
 
 /* Back link styling */
