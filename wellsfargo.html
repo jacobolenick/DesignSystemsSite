@@ -103,9 +103,20 @@
             opacity: 1;
             visibility: visible;
         }
+        
+        .home-link {
+            display: inline-block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+        
+        .home-link:hover {
+            color: var(--text-primary);
+        }
     </style>
 </head>
-<body>
+<body class="page-wellsfargo">
     <nav>
         <div class="menu-overlay"></div>
         <div class="nav-content">
@@ -127,14 +138,12 @@
     </nav>
 
     <main>
-        <a href="index.html#work" class="back-link">← Back to projects</a>
-        
         <div class="project-header">
             <span class="project-number">04</span>
-            <h1><span class="highlight">Wells Fargo</span> Vantage</h1>
-            <p>Building a new platform for businesses to bank better with Wells Fargo</p>
+            <h1><span class="highlight">Wells Fargo</span></h1>
+            <p>I worked on building a 0-1 design system for Wells Fargo's internal tools.</p>
+            <a href="index.html#work" class="back-link">← Back to projects</a>
         </div>
-
         <div class="project-content">
     
 
@@ -182,53 +191,52 @@
         </svg>
     </a>
 
+    <script src="/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Menu functionality
-            const menuButton = document.querySelector('.menu-button');
-            const menuOverlay = document.querySelector('.menu-overlay');
-            const nav = document.querySelector('nav');
+        // Menu functionality
+        const menuButton = document.querySelector('.menu-button');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        const nav = document.querySelector('nav');
 
-            function toggleMenu() {
-                nav.classList.toggle('menu-open');
-                document.body.classList.toggle('no-scroll');
+        function toggleMenu() {
+            nav.classList.toggle('menu-open');
+            document.body.classList.toggle('no-scroll');
+        }
+
+        menuButton.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
+                toggleMenu();
             }
+        });
 
-            menuButton.addEventListener('click', toggleMenu);
-            menuOverlay.addEventListener('click', toggleMenu);
+        // Back to top button functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
 
-            // Close menu when clicking a link
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', () => {
-                    nav.classList.remove('menu-open');
-                    document.body.style.overflow = '';
-                });
-            });
-
-            // Close menu on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && nav.classList.contains('menu-open')) {
-                    toggleMenu();
-                }
-            });
-
-            // Back to top functionality
-            const backToTop = document.querySelector('.back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-
-            backToTop.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
     </script>

@@ -59,7 +59,7 @@
         }
     </style>
 </head>
-<body>
+<body class="page-cvs-health">
     <nav>
         <div class="menu-overlay"></div>
         <div class="nav-content">
@@ -81,14 +81,12 @@
     </nav>
 
     <main>
-        <a href="../index.html#work" class="back-link">← Back to projects</a>
-        
         <div class="project-header">
             <span class="project-number">02</span>
             <h1><span class="highlight">CVS Health</span></h1>
-            <p>I'm a design systems designer for our pattern library, helping to increase design and development efficiency for our product launches.</p>
+            <p>I'm the lead design systems designer for our pattern library and I've helped increase design and development for our product launches.</p>
+            <a href="index.html#work" class="back-link">← Back to projects</a>
         </div>
-
         <div class="project-content">
             
             <h2>The Role</h2>
@@ -128,23 +126,7 @@
         </svg>
     </a>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Menu functionality
-            const menuButton = document.querySelector('.menu-button');
-            const menuOverlay = document.querySelector('.menu-overlay');
-            const nav = document.querySelector('nav');
-
-            function toggleMenu() {
-                nav.classList.toggle('menu-open');
-                document.body.classList.toggle('no-scroll');
-            }
-
-            menuButton.addEventListener('click', toggleMenu);
-            menuOverlay.addEventListener('click', toggleMenu);
-        });
-    </script>
-
+    <script src="/script.js"></script>
     <script>
         // Back to top button functionality
         const backToTop = document.querySelector('.back-to-top');
@@ -166,6 +148,21 @@
         });
     </script>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu functionality
+            const menuButton = document.querySelector('.menu-button');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const nav = document.querySelector('nav');
+
+            function toggleMenu() {
+                nav.classList.toggle('menu-open');
+                document.body.classList.toggle('no-scroll');
+            }
+
+            menuButton.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', toggleMenu);
+        });
+    </script>
 </body>
 </html>

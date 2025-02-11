@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramount+ Design System - Jacob Olenick</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: var(--pastel-blue);
+        }
+        
+        .project-header {
+            padding-top: 15vh;
+            margin-bottom: 4rem;
+        }
+        
+        .project-content {
+            max-width: 800px;
+            background-color: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 24px;
+            margin: 2rem auto;
+        }
+        
+        .project-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .project-image {
+            margin: 4rem 0;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        
+        .project-content ul {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .project-content li {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        main {
+            padding-top: 8rem;
+        }
+        
+        .project-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 4rem auto;
+            max-width: 600px;
+        }
+        
+        .project-navigation a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin: 4rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+    </style>
+</head>
+<body class="page-paramount">
+    <nav>
+        <div class="menu-overlay"></div>
+        <div class="nav-content">
+            <button class="menu-button" aria-label="Toggle menu">
+                <span class="hamburger"></span>
+            </button>
+            <a href="/" class="logo">JO</a>
+            <ul>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://www.threads.net/@jacob.olenick" target="_blank">Threads</a>
+                <a href="https://bsky.app/profile/jacobolenick" target="_blank">Bluesky</a>
+                <a href="https://www.linkedin.com/in/jacobmolenick" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="project-header">
+            <span class="project-number">05</span>
+            <h1><span class="highlight">Paramount+</span></h1>
+            <p>In 2022 I worked on these features as a Product Designer for Paramount+</p>
+            <a href="index.html#work" class="back-link">← Back to projects</a>
+        </div>
+        <div class="project-content">
+            <div class="video-container">
+                <video controls playsinline>
+                    <source src="paramount.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="image-gallery">
+                <img src="p1.png" alt="Paramount+ Design System - View 1" class="project-image">
+                <img src="p2.png" alt="Paramount+ Design System - View 2" class="project-image">
+                <img src="p3.png" alt="Paramount+ Design System - View 3" class="project-image">
+                <img src="p4.png" alt="Paramount+ Design System - View 4" class="project-image">
+            </div>
+            
+            <div class="project-navigation">
+                <a href="wellsfargo.html">← Previous Project:<br>Wells Fargo</a>
+                <a href="credit-one.html">Next Project:<br>Credit One Bank →</a>
+            </div>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </a>
+
+    <script src="/script.js"></script>
+    <script>
+        // Back to top button functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

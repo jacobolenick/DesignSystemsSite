@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@
     
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="page-index">
     <div class="announcement-banner">
         <a href="https://jacobolenick1.gumroad.com" target="_blank" class="banner-link">
             <div class="content">
@@ -110,6 +110,15 @@
                     <span class="project-number">05</span>
                     <h2>Crtside</h2>
                     <p>Developed a comprehensive design system for a modern fintech platform, focusing on accessibility and scalability.</p>
+                </div>
+            </a>
+
+            <a href="paramount.html" class="project">
+                <img src="p2.png" alt="Paramount+ Project Preview">
+                <div class="project-content">
+                    <span class="project-number">06</span>
+                    <h2>Paramount+</h2>
+                    <p>Created a comprehensive design system for Paramount+'s streaming platform, enhancing user experience and maintaining brand consistency.</p>
                 </div>
             </a>
         </section>
@@ -219,9 +228,27 @@
         </svg>
     </a>
 
-    <footer>
-        <p>&copy; 2024</p>
-    </footer>
+    <script src="/script.js"></script>
+    <script>
+        // Back to top button functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

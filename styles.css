@@ -1,30 +1,62 @@
 html[data-theme="black"] .sun-icon { display: block; }
 html[data-theme="light"] .moon-icon { display: block; }:root {
-    /* Black theme */
-    --bg-primary: #000000;
-    --bg-secondary: #121212;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --accent: #1f1f1f;
+    /* Light theme with pastel colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --accent: #e8e8e8;
     --accent-bright: #4169E1;
-    --grid-color: rgba(255, 255, 255, 0.07);
+    --grid-color: rgba(0, 0, 0, 0.05);
     --spacing: clamp(1rem, 2vw, 3rem);
     --max-width: 1400px;
+    
+    /* Pastel section colors */
+    --pastel-yellow: #fff7d6;
+    --pastel-pink: #ffe6e6;
+    --pastel-green: #e6ffe6;
+    --pastel-blue: #e6f3ff;
+    --pastel-purple: #f5e6ff;
+    --pastel-peach: #ffe6dc;
+    --pastel-mint: #dcffe6;
+    --pastel-lavender: #e6e6ff;
+    --pastel-coral: #ffd6d6;
+    --pastel-sage: #e6efe6;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Restore page-specific background colors */
+body.page-index {
+    background-color: var(--bg-primary);
 }
 
+body.page-paramount {
+    background-color: var(--pastel-blue);
+}
+
+body.page-credit-one {
+    background-color: var(--pastel-pink);
+}
+
+body.page-cvs-health {
+    background-color: var(--pastel-green);
+}
+
+body.page-orgspace {
+    background-color: var(--pastel-purple);
+}
+
+body.page-wellsfargo {
+    background-color: var(--pastel-peach);
+}
+
+body.page-crtside {
+    background-color: var(--pastel-mint);
+}
+
+/* Update body background */
 body {
     font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--bg-primary);
-    background-image: 
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: 40px 40px;
     color: var(--text-primary);
     line-height: 1.6;
     font-size: clamp(1rem, 1.1vw, 1.2rem);
@@ -37,21 +69,13 @@ body::before {
     left: 0;
     right: 0;
     height: 200px;
-    background: linear-gradient(var(--bg-primary), transparent);
+    background: linear-gradient(var(--bg-primary) 60%, transparent);
     pointer-events: none;
     z-index: 1;
 }
 
 body::after {
-    content: '';
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 200px;
-    background: linear-gradient(transparent, var(--bg-primary));
-    pointer-events: none;
-    z-index: 1;
+    display: none;
 }
 
 nav {
@@ -60,7 +84,7 @@ nav {
     width: 100%;
     top: 0;
     z-index: 1000;
-    background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(10,15,26,0) 100%);
+    background: linear-gradient(180deg, var(--bg-primary) 60%, rgba(255,255,255,0));
     transition: transform 0.3s ease;
 }
 
@@ -315,7 +339,7 @@ main {
     padding: 0 var(--spacing);
     max-width: var(--max-width);
     margin: 0 auto;
-    padding-top: 8rem;
+    padding-top: 120px;
     transition: padding-top 0.3s ease;
 }
 
@@ -324,7 +348,7 @@ main {
 }
 
 main:not(.announcement-banner.visible ~ main) {
-    padding-top: 8rem;
+    padding-top: 6rem;
 }
 
 @media (max-width: 768px) {
@@ -340,7 +364,14 @@ section {
     justify-content: center;
 }
 
-#hero, #about, #contact {
+#hero, #work, #about, #contact, .newsletter {
+    border-radius: 24px;
+    margin: 2rem var(--spacing);
+}
+
+#hero {
+    background-color: var(--pastel-lavender);
+    padding: 4rem var(--spacing);
     min-height: 80vh;
 }
 
@@ -397,26 +428,28 @@ section {
 }
 
 #work {
+    background-color: var(--pastel-pink);
+    padding: 6rem var(--spacing);
+    min-height: 90vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    padding: var(--spacing);
-    max-width: var(--max-width);
-    margin: 0 auto;
+    gap: 3rem;
+    margin: 2rem var(--spacing);
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 .project {
-    position: relative;
-    background: var(--bg-secondary);
-    padding: 0;
-    border-radius: 12px;
+    background-color: var(--bg-primary);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     text-decoration: none;
     color: var(--text-primary);
     display: flex;
     flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
+    height: fit-content;
 }
 
 .project:hover {
@@ -428,10 +461,21 @@ section {
     width: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
+    margin-bottom: 2rem;
+    border-radius: 16px;
 }
 
 .project-content {
-    padding: 2rem;
+    background-color: var(--bg-primary);
+    border-radius: 24px;
+    padding: 3rem;
+    margin: 0 auto 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+}
+
+.project-content {
+    padding: 2rem 0;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -454,15 +498,27 @@ section {
 }
 
 .project-header {
-    padding-top: 15vh;
-    margin-bottom: 4rem;
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    padding: 0 var(--spacing);
+}
+
+.project-header .project-number {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.project-header h1 {
+    font-size: 3rem;
+    margin: 0 0 1rem;
 }
 
 .project-header p {
-    max-width: 600px;
     color: var(--text-secondary);
     font-size: 1.2rem;
-    line-height: 1.6;
+    margin: 0 0 1.5rem;
 }
 
 .project-navigation {
@@ -496,7 +552,6 @@ section {
 
 .project-navigation a:hover {
     color: var(--text-primary);
-    background-color: var(--bg-secondary);
 }
 
 @media (max-width: 768px) {
@@ -515,7 +570,8 @@ section {
 }
 
 #about {
-    background-color: var(--bg-secondary);
+    background-color: var(--pastel-green);
+    padding: 4rem var(--spacing);
     margin: 2rem var(--spacing);
     padding: 1.5rem var(--spacing);
     border-radius: 24px;
@@ -527,6 +583,10 @@ section {
     display: flex;
     align-items: center;
     gap: 3rem;
+    background-color: var(--bg-primary);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .about-text {
@@ -568,6 +628,8 @@ section {
 }
 
 #contact {
+    background-color: var(--pastel-blue);
+    padding: 4rem var(--spacing);
     min-height: 80vh;
 }
 
@@ -576,6 +638,10 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    background-color: var(--bg-primary);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .contact-text {
@@ -694,7 +760,6 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('hero.png');
     background-size: cover;
     background-position: center;
     opacity: 0.9;
@@ -1030,7 +1095,7 @@ footer {
 @media (max-width: 768px) {
     nav {
         padding: 1rem var(--spacing);
-        background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(10,15,26,0) 100%);
+        background: linear-gradient(180deg, var(--bg-primary) 60%, rgba(255,255,255,0));
         top: 0;
     }
 
@@ -1151,59 +1216,26 @@ body.boline .announcement-banner {
 
 /* Back link styling */
 .back-link {
-    display: inline-block;
+    display: block;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    padding: 0 var(--spacing);
     color: var(--text-secondary);
     text-decoration: none;
-    margin-top: 8rem;
-    margin-bottom: 2rem;
     transition: color 0.3s ease;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    background: var(--accent);
 }
 
 .back-link:hover {
     color: var(--text-primary);
 }
 
-/* Back to top button */
-.back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--accent);
-    color: var(--text-primary);
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.back-to-top:hover {
-    transform: translateY(-4px);
-    background: var(--bg-secondary);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.back-to-top svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    stroke: currentColor;
-    stroke-width: 2;
+.project-content {
+    background-color: var(--bg-primary);
+    border-radius: 24px;
+    padding: 3rem;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
 }
 
 h1.highlight, h2.highlight {
@@ -1221,4 +1253,79 @@ h1.highlight::after, h2.highlight::after {
     background-color: var(--accent-bright);
     z-index: -1;
     opacity: 0.8;
+}
+
+.project-content {
+    background-color: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 24px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.newsletter {
+    background-color: var(--pastel-sage);
+    padding: 4rem var(--spacing);
+    text-align: center;
+    margin-bottom: 4rem;
+    border-radius: 24px;
+}
+
+.newsletter-background {
+    display: none;
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px);
+    background: var(--bg-secondary);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+/* Back to home link */
+.home-link {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    padding: 0 var(--spacing);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.home-link:hover {
+    color: var(--text-primary);
 }

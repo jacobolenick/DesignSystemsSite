@@ -95,9 +95,25 @@ html[data-theme="light"] .moon-icon { display: block; }<!DOCTYPE html>
             text-decoration: none;
             transition: color 0.3s ease;
         }
+        
+        .home-link {
+            display: inline-block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-top: 8rem;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: var(--accent);
+        }
+        
+        .home-link:hover {
+            color: var(--text-primary);
+        }
     </style>
 </head>
-<body>
+<body class="page-orgspace">
     <nav>
         <div class="menu-overlay"></div>
         <div class="nav-content">
@@ -119,13 +135,12 @@ html[data-theme="light"] .moon-icon { display: block; }<!DOCTYPE html>
     </nav>
 
     <main>
-        <a href="index.html#work" class="back-link">← Back to projects</a>
-        
         <div class="project-header">
             <span class="project-number">03</span>
             <h1><span class="highlight">Orgspace</span></h1>
+            <p>Built a 0-1 design system in 3 months utilizing Figma, Tailwind, and Storybook.</p>
+            <a href="index.html#work" class="back-link">← Back to projects</a>
         </div>
-
         <div class="project-content">
             
             <h2>A 0-to-1 design system for an organization SaaS software.</h2>
