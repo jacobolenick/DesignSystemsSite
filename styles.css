@@ -88,8 +88,7 @@ nav {
     width: 100%;
     top: 0;
     z-index: 1000;
-    background: linear-gradient(180deg, var(--bg-primary) 60%, rgba(255,255,255,0));
-    transition: transform 0.3s ease;
+    background: var(--bg-primary);
 }
 
 .nav-content {
@@ -121,7 +120,6 @@ nav ul {
 nav a {
     color: var(--text-secondary);
     text-decoration: none;
-    transition: color 0.3s ease;
     font-size: 1rem;
 }
 
@@ -138,7 +136,6 @@ nav a:hover {
 
 .social-links a {
     color: var(--text-secondary);
-    transition: color 0.3s ease;
     text-decoration: none;
     font-size: 0.875rem;
 }
@@ -187,7 +184,6 @@ html[data-theme="light"] .moon-icon {
     width: 24px;
     position: absolute;
     left: 3px;
-    transition: transform 0.3s ease;
 }
 
 .menu-button .hamburger {
@@ -232,7 +228,6 @@ nav.menu-open .menu-button .hamburger::after {
         padding: 1rem var(--spacing);
         background: var(--bg-primary);
         z-index: 1000;
-        transform: none !important;
     }
 
     nav.banner-visible {
@@ -259,19 +254,11 @@ nav.menu-open .menu-button .hamburger::after {
         height: 100vh;
         z-index: 2000;
         transform: translateX(100%);
-        transition: transform 0.3s ease;
     }
 
     nav ul li {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        transition-delay: calc(var(--item-index) * 0.1s);
-    }
-
-    nav.menu-open ul li {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
     }
 
     nav.menu-open ul {
@@ -299,14 +286,14 @@ nav.menu-open .menu-button .hamburger::after {
         padding: 2rem;
         gap: 3rem;
         z-index: 2000;
-        opacity: 0;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        opacity: 1;
+        visibility: visible;
     }
 
     nav.menu-open .social-links {
         display: flex;
-        visibility: visible;
         opacity: 1;
+        visibility: visible;
     }
 
     /* Menu overlay */
@@ -319,8 +306,7 @@ nav.menu-open .menu-button .hamburger::after {
         bottom: 0;
         background: rgba(0, 0, 0, 0.5);
         z-index: 1999;
-        opacity: 0;
-        transition: opacity 0.3s ease;
+        opacity: 1;
     }
 
     nav.menu-open .menu-overlay {
@@ -344,7 +330,6 @@ main {
     max-width: var(--max-width);
     margin: 0 auto;
     padding-top: 120px;
-    transition: padding-top 0.3s ease;
 }
 
 .announcement-banner.visible ~ main {
@@ -375,12 +360,12 @@ section {
 
 #hero {
     background-color: var(--pastel-lavender);
-    padding: 4rem var(--spacing);
-    min-height: 80vh;
+    padding: 2rem var(--spacing);
+    min-height: 50vh;
 }
 
 #hero {
-    padding-top: 15vh;
+    padding-top: 10vh;
 }
 
 .highlight {
@@ -403,7 +388,7 @@ section {
 #hero h1 {
     font-size: clamp(3rem, 8vw, 6rem);
     line-height: 1;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-weight: 700;
     letter-spacing: -0.03em;
 }
@@ -429,6 +414,7 @@ section {
     color: var(--text-secondary);
     font-size: clamp(1.2rem, 2vw, 1.5rem);
     max-width: 600px;
+    margin-bottom: 2rem;
 }
 
 #work {
@@ -446,19 +432,18 @@ section {
 .project {
     background-color: var(--bg-primary);
     border-radius: 24px;
-    padding: 3rem;
+    padding: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     text-decoration: none;
     color: var(--text-primary);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
     height: fit-content;
+    margin-bottom: 1rem;
 }
 
 .project:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .project img {
@@ -467,19 +452,20 @@ section {
     object-fit: cover;
     margin-bottom: 2rem;
     border-radius: 16px;
+    height: 240px;
 }
 
 .project-content {
-    background-color: var(--bg-primary);
+    background-color: transparent;
     border-radius: 24px;
-    padding: 3rem;
-    margin: 0 auto 2rem;
+    padding: 0.75rem 0;
+    margin: 0 auto 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     max-width: 800px;
 }
 
 .project-content {
-    padding: 2rem 0;
+    padding: 0.75rem 0;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -487,18 +473,22 @@ section {
 }
 
 .project-number {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
     display: block;
+    margin-bottom: 0.25rem;
 }
 
 .project h2 {
     margin: 0;
+    margin-bottom: 0.25rem;
 }
 
 .project p {
     color: var(--text-secondary);
     margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
 .project-header {
@@ -538,7 +528,6 @@ section {
 .project-navigation a {
     color: var(--text-secondary);
     text-decoration: none;
-    transition: color 0.3s ease;
     padding: 1.5rem;
     flex-basis: 250px;
     border-radius: 8px;
@@ -575,7 +564,7 @@ section {
 
 #about {
     background-color: var(--pastel-green);
-    padding: 4rem var(--spacing);
+    padding: 1.5rem var(--spacing);  /* Reduced from 3rem to 1.5rem */
     margin: 2rem var(--spacing);
     padding: 1.5rem var(--spacing);
     border-radius: 24px;
@@ -633,8 +622,8 @@ section {
 
 #contact {
     background-color: var(--pastel-blue);
-    padding: 4rem var(--spacing);
-    min-height: 80vh;
+    padding: 1.5rem var(--spacing);  /* Reduced from 3rem to 1.5rem */
+    min-height: auto;  /* Changed from 80vh to auto to remove forced height */
 }
 
 #contact .contact-content {
@@ -644,7 +633,7 @@ section {
     align-items: center;
     background-color: var(--bg-primary);
     border-radius: 24px;
-    padding: 2rem;
+    padding: 1rem 2rem;  /* Reduced from 2rem to 1rem top/bottom */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -746,6 +735,34 @@ section {
     color: var(--text-primary);
 }
 
+.newsletter {
+    background-color: var(--pastel-sage);
+    padding: 1.5rem var(--spacing);
+    text-align: center;
+    margin: 2rem var(--spacing);
+    border-radius: 24px;
+    width: auto;
+    box-sizing: border-box;
+}
+
+.newsletter-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .newsletter {
+        margin: 1rem 0;
+        padding: 1.5rem var(--spacing);
+        border-radius: 0;
+    }
+    
+    .newsletter-content {
+        padding: 0;
+    }
+}
+
 #newsletter {
     padding: 8rem 0;
     background-color: var(--bg-secondary);
@@ -826,7 +843,7 @@ footer {
 .contact-content {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -854,10 +871,8 @@ footer {
     align-items: center;
 }
 
-.contact-img-main,
 .contact-img-overlay {
     width: 100%;
-    max-width: 400px;
     height: auto;
     border-radius: 24px;
     filter: grayscale(10%) brightness(90%);
@@ -870,12 +885,10 @@ footer {
         gap: 2rem;
     }
 
-    .contact-img-main,
     .contact-img-overlay {
         width: 100%;
-        max-width: 400px;
         height: auto;
-        margin: 0;
+        margin-bottom: 2rem;
     }
 }
 
@@ -959,10 +972,6 @@ footer {
     .contact-image {
         padding: 2rem;
         margin-top: 2rem;
-    }
-
-    .contact-img-main {
-        width: 120%;
     }
 
     .contact-img-overlay {
@@ -1099,7 +1108,7 @@ footer {
 @media (max-width: 768px) {
     nav {
         padding: 1rem var(--spacing);
-        background: linear-gradient(180deg, var(--bg-primary) 60%, rgba(255,255,255,0));
+        background: var(--bg-primary);
         top: 0;
     }
 
@@ -1161,7 +1170,7 @@ footer {
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
-        padding: 2rem;
+        padding: 1rem;  /* Reduced from 1.5rem to 1rem */
     }
 
     .contact-text {
@@ -1314,7 +1323,7 @@ footer {
         display: grid;
         grid-template-columns: 1fr;
         gap: 2rem;
-        padding: 1rem;
+        padding: 1rem;  /* Reduced from 1.5rem to 1rem */
     }
 
     .contact-text {
@@ -1600,7 +1609,7 @@ h1.highlight::after, h2.highlight::after {
         display: grid;
         grid-template-columns: 1fr;
         gap: 2rem;
-        padding: 1rem;
+        padding: 1rem;  /* Reduced from 1.5rem to 1rem */
     }
 
     .contact-text {
@@ -1686,10 +1695,12 @@ h1.highlight::after, h2.highlight::after {
 
 .newsletter {
     background-color: var(--pastel-sage);
-    padding: 4rem var(--spacing);
+    padding: 1.5rem var(--spacing);
     text-align: center;
-    margin-bottom: 4rem;
+    margin: 2rem var(--spacing);
     border-radius: 24px;
+    width: auto;
+    box-sizing: border-box;
 }
 
 .newsletter-background {
@@ -1749,4 +1760,8 @@ h1.highlight::after, h2.highlight::after {
 
 .home-link:hover {
     color: var(--text-primary);
+}
+
+html {
+    scroll-behavior: auto;
 }
